@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="WpfUICultureChangeAtRuntime.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfUICultureChangeAtRuntime.Views"
+             xmlns:markupExtensions="clr-namespace:WpfUICultureChangeAtRuntime.MarkupExtensions"
+             xmlns:behaviors="clr-namespace:WpfUICultureChangeAtRuntime.Controls.Behaviors"
+             mc:Ignorable="d" >
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="{markupExtensions:Localizer Key=SettingsTitle}" FontSize="20"></TextBlock>
+        <TextBlock Text="{markupExtensions:Localizer Key=Language}" FontSize="18"/>
+        <StackPanel Orientation="Horizontal" MaxHeight="25">
+            <Label Content="{markupExtensions:Localizer Key=SelectLanguage}"/>
+            <ComboBox x:Name="LanguageComboBox"
+                              behaviors:SelectionChangedBehaviour.Command="{Binding Path=SelectionChangedCommand }"
+                              ItemsSource="{Binding Path=Languages, Mode=OneWay}"
+                              SelectedValuePath="Key"
+                              SelectedValue="{Binding Path=SelectedLanguage}"
+                              DisplayMemberPath="Value" />
+
+        </StackPanel>
+    </StackPanel>
+</UserControl>

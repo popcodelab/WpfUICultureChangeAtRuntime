@@ -1,0 +1,33 @@
+﻿<Application x:Class="WpfUICultureChangeAtRuntime.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfUICultureChangeAtRuntime"
+             xmlns:viewmodels="clr-namespace:WpfUICultureChangeAtRuntime.ViewModels"
+             xmlns:views="clr-namespace:WpfUICultureChangeAtRuntime.Views"
+             Startup="App_OnStartup">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                <views:HomeView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:FilesViewModel}">
+                <views:FilesView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+                <views:SettingsView />
+            </DataTemplate>
+
+
+            <Style x:Key="TitleStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
