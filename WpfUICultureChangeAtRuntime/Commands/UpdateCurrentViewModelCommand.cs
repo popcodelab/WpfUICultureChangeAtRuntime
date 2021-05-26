@@ -10,11 +10,7 @@ namespace WpfUICultureChangeAtRuntime.Commands
         private readonly IViewModelFactory _viewModelFactory;
         private INavigator _navigator;
 
-        #region Event handlers
-
-        public event EventHandler CanExecuteChanged;
-
-        #endregion
+        
 
         public UpdateCurrentViewModelCommand(INavigator navigator, IViewModelFactory viewModelFactory)
         {

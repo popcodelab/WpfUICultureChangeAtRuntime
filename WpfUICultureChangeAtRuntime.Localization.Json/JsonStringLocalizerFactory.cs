@@ -5,6 +5,7 @@ using System;
 
 namespace WpfUICultureChangeAtRuntime.Localization.Json
 {
+
     public class JsonStringLocalizerFactory : IStringLocalizerFactory
     {
 

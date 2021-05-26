@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using WpfUICultureChangeAtRuntime.Localization.Json.Extensions;
 
 namespace WpfUICultureChangeAtRuntime.Localization.Json
@@ -57,6 +55,11 @@ namespace WpfUICultureChangeAtRuntime.Localization.Json
             }
         }
 
+        /// <summary>
+        /// Feeds the language dictionary
+        /// </summary>
+        /// <param name="cultureKey">The wanted culture</param>
+        /// <returns>The language dictionary</returns>
         private Dictionary<string, string> FeedLanguageDictionary(string cultureKey)
         {
             _logger.LogDebug($"Detected culture is {cultureKey}");

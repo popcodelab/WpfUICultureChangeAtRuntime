@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="WpfUICultureChangeAtRuntime.Controls.SideBarRadioButtonsMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfUICultureChangeAtRuntime.Controls"
+             xmlns:markupExtensions="clr-namespace:WpfUICultureChangeAtRuntime.MarkupExtensions"
+             xmlns:nav="clr-namespace:WpfUICultureChangeAtRuntime.Navigators"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="SideBarRadioButtonStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#82B7FB"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Border Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Content="{TemplateBinding Content}"/>
+
+                                <!--Bottom Indicator-->
+                                <Border 
+                                        Height="2"
+                                        Width="15"
+                                        Background="#ffffff"
+                                        CornerRadius="1"
+                                        VerticalAlignment="Bottom">
+                                    <Border.Style>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton}}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="#000000"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <UniformGrid Rows="3">
+        <RadioButton IsChecked="True"
+                     Cursor="Hand"
+                     Content="{markupExtensions:Localizer Key=Home}"
+                     Command="{Binding UpdateCurrentViewModelCommand}"
+                     CommandParameter="{x:Static nav:ViewType.Home}"
+                     GroupName="SideMenuButtons"
+                     Style="{StaticResource SideBarRadioButtonStyle}"/>
+        <RadioButton Command="{Binding UpdateCurrentViewModelCommand}"
+                     CommandParameter="{x:Static nav:ViewType.Settings}"
+                     Cursor="Hand"
+                     Content="{markupExtensions:Localizer Key=Settings}"
+                     GroupName="SideMenuButtons"
+                     Style="{StaticResource SideBarRadioButtonStyle}"/>
+
+        <RadioButton Command="{Binding UpdateCurrentViewModelCommand}"
+                     CommandParameter="{x:Static nav:ViewType.Files}"
+                     Cursor="Hand"
+                     Content="{markupExtensions:Localizer Key=Files}"
+                     GroupName="SideMenuButtons"
+                     Style="{StaticResource SideBarRadioButtonStyle}"/>
+    </UniformGrid>
+</UserControl>

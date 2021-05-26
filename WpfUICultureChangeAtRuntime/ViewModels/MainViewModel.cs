@@ -27,8 +27,14 @@ namespace WpfUICultureChangeAtRuntime.ViewModels
 
         #region "Properties"
 
+        /// <summary>
+        /// Current ViewModel
+        /// </summary>
         public ViewModelBase CurrentViewModel => _navigator.CurrentViewModel;
-        public ICommand UpdateCurrentViewModelCommand { get; }
+        /// <summary>
+        /// Navigation between views
+        /// </summary>
+        public ICommand UpdateCurrentViewModelCommand { get; set; }
 
         #endregion "Properties"
 

@@ -12,53 +12,6 @@
         AllowsTransparency="True" 
         Background="Transparent" 
         WindowStartupLocation="CenterScreen">
-<Window.Resources>
-        <Style x:Key="SideBarRadioButtonStyle" TargetType="{x:Type RadioButton}">
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#82B7FB"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type RadioButton}">
-                        <Border Background="{TemplateBinding Background}">
-                            <Grid>
-                                <ContentPresenter
-                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        Content="{TemplateBinding Content}"/>
-
-                                <!--Bottom Indicator-->
-                                <Border 
-                                        Height="2"
-                                        Width="15"
-                                        Background="#ffffff"
-                                        CornerRadius="1"
-                                        VerticalAlignment="Bottom">
-                                    <Border.Style>
-                                        <Style TargetType="{x:Type Border}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=RadioButton}}" Value="False">
-                                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
-                                </Border>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Foreground" Value="#000000"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-</Window.Resources>
 
     <Border Background="Transparent">
         <Border Background="#377BEA" CornerRadius="20" BorderThickness="0">
@@ -68,25 +21,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <UniformGrid Rows="3">
-                    <RadioButton IsChecked="True"
-                                 Content="{markupExtensions:Localizer Key=Home}"
-                                 Command="{Binding UpdateCurrentViewModelCommand}"
-                                 CommandParameter="{x:Static nav:ViewType.Home}"
-                                 GroupName="SideMenuButtons"
-                                 Style="{StaticResource SideBarRadioButtonStyle}"/>
-                    <RadioButton Command="{Binding UpdateCurrentViewModelCommand}"
-                                 CommandParameter="{x:Static nav:ViewType.Settings}"
-                                 Content="{markupExtensions:Localizer Key=Settings}"
-                                 GroupName="SideMenuButtons"
-                                 Style="{StaticResource SideBarRadioButtonStyle}"/>
-
-                    <RadioButton Command="{Binding UpdateCurrentViewModelCommand}"
-                                 CommandParameter="{x:Static nav:ViewType.Files}"
-                                 Content="{markupExtensions:Localizer Key=Files}"
-                                 GroupName="SideMenuButtons"
-                                 Style="{StaticResource SideBarRadioButtonStyle}"/>
-                </UniformGrid>
+                <controls:SideBarRadioButtonsMenu UpdateCurrentViewModelCommand="{Binding UpdateCurrentViewModelCommand}"></controls:SideBarRadioButtonsMenu>
                 <Border  Grid.Column="1" Background="Transparent">
                     <Border Background="White" CornerRadius="5" BorderThickness="0">
 
